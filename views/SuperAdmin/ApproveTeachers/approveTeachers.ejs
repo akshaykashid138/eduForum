@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="approveTeachers"
+      ng-controller="approveTeachersCtrlr"
+      ng-init="initController()" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-1">
+                    <div class="col-sm-6">
+                        <h1>Approve Teachers</h1>
+                    </div>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-bold">Students List</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 400px;">
+                                <input type="text" name="table_search" class="form-control float-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Teacher ID</th>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Identity</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody ng ng-repeat="data in data">
+                            <tr ng-repeat="teacher in data.Teachers">
+                                <td>{{data.UserID}}</td>
+                                <td>{{teacher.TeacherID}}</td>
+                                <td>{{teacher.FullName}}</td>
+                                <td>{{data.EmailID}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <% include ../../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

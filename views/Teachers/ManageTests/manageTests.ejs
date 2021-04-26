@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="manageTests" ng-controller="manageTestsCtrlr"
+      ng-init="initController(<%- UserID %>)" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-1">
+                    <div class="col-sm-6">
+                        <h1>Recently Asked Questions</h1>
+                    </div>
+                    {{RewardsPoints}}
+                    <div class="text-right col">
+                        <a type="button" class="btn btn-outline-dark" href="/createTest">Create Test</a>
+                    </div>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row" >
+                    <div class="col-3 form-group" ng-repeat="test in tests">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h2 class="card-title">Test Name: {{test.TestName}}</h2>
+                                <p class="card-text">{{test.TestDescription}}</p>
+                                <h5>No of Questions: {{test.NumberOfQuestions}}</h5>
+                                <a href="viewTestReport?TestID={{test.TestID}}" class="btn btn-primary">View Report</a>
+                                <a  class="btn btn-danger" ng-click="DeleteTest(test.TestID)">Delete Test</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <% include ../../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+<% include ng-app.js%>
+</script>
+</body>
+</html>

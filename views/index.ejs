@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ./Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ./Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-1">
+                    <div class="col-sm-6">
+                        <h1>Recently Asked Questions</h1>
+                    </div>
+                    <div class="text-right col">
+                        <button class="btn btn-outline-dark">Ask Question</button>
+                    </div>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Default box -->
+                        <!-- Card -->
+                        <div class="card col-2">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="votes">
+                                        <div class="mini-counts text-center"><span title="-1 votes">-1</span></div>
+                                        <div>votes</div>
+                                    </div>
+                                    <div class="answers">
+                                        <div class="mini-counts text-center"><span title="-1 answers">-1</span>
+                                        </div>
+                                        <div>answers</div>
+                                    </div>
+                                    <div class="views">
+                                        <div class="mini-counts text-center"><span title="-1 views">-1</span></div>
+                                        <div>views</div>
+                                    </div>
+                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="">
+                                Question?
+                            </div>
+                            <div class="">
+                                <p class="card-text">Question tags</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <% include ./Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ./Partials/bodyScriptLoader.ejs %>
+</body>
+</html>

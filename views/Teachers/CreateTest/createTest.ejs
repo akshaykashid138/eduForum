@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="createTestApp"
+      ng-controller="createTestAppCtrlr" ng-init="initController(<%- UserID %>)" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h2 class="text-white">Create Test</h2>
+                        {{RewardsPoints}}
+                    </div>
+                    <div class="card-body">
+                        <form name="createTestForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="TestName">Test Name</label>
+                                    <input type="text" class="form-control" id="TestName" name="TestName"
+                                          ng-model="data.TestName" ng-minlength="3"
+                                           placeholder="Enter Test Name" autofocus required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="NumberOfQuestions">Number Of Questions</label>
+                                    <input type="number" class="form-control" id="NumberOfQuestions"
+                                           name="NumberOfQuestions" ng-model="data.NumberOfQuestions"
+
+                                           placeholder="Enter Number Of Questions" required>
+                                </div>
+                            </div>
+
+                            <div ng-messages="createTestForm.TestName.$error" style="color:red"
+                                 ng-if="createTestForm.TestName.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Test Name</div>
+                                <div ng-message="minlength">Test Name is too short</div>
+                            </div>
+                            <div ng-messages="createTestForm.NumberOfQuestions.$error" style="color:red"
+                                 ng-if="createTestForm.NumberOfQuestions.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Number Of Questions</div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md">
+                                    <label for="TestDescription">Test Description</label>
+                                    <input type="text" class="form-control" name="TestDescription" id="TestDescription"
+                                           ng-model="data.TestDescription" ng-minlength="3"
+                                           placeholder="Enter Test Description" required>
+                                </div>
+                            </div>
+                            <div ng-messages="createTestForm.TestDescription.$error" style="color:red"
+                                 ng-if="createTestForm.TestDescription.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Test Description</div>
+                                <div ng-message="minlength">Test Description is too short</div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md">
+                                    <label for="Tags">Tags</label>
+                                    <input type="text" class="form-control" name="Tags" id="Tags"
+                                           placeholder="Enter Tags" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md">
+                                    <label for="JoiningPoints">Joining Points</label>
+                                    <input type="number" class="form-control" name="JoiningPoints" id="JoiningPoints"
+                                           ng-model="data.JoiningPoints"
+                                           placeholder="Enter Joining Points" required>
+                                </div>
+                                <div class="form-group col-md">
+                                    <label for="WinningPoints">Winning Points</label>
+                                    <input type="number" class="form-control" name="WinningPoints" id="WinningPoints"
+                                           ng-model="data.WinningPoints"
+                                           placeholder="Enter Winning Points" required>
+                                </div>
+                            </div>
+                            <div ng-messages="createTestForm.JoiningPoints.$error" style="color:red"
+                                 ng-if="createTestForm.JoiningPoints.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Joining Points</div>
+
+                            </div>
+                            <div ng-messages="createTestForm.WinningPoints.$error" style="color:red"
+                                 ng-if="createTestForm.WinningPoints.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter Winning Points</div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md">
+                                    <label for="MinimumUsers">Minimum Users To Join</label>
+                                    <input type="number" class="form-control" name="MinimumUsers" id="MinimumUsers"
+                                           placeholder="Enter Minimum Users to join" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-dark mx-auto" ng-disabled="!createTestForm.$valid"
+                                        ng-click="createTest()">Add Test
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ./Team member -->
+    </div>
+    <!-- Team -->
+
+    <!-- /.content-wrapper -->
+
+    <% include ../../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+</div>
+<!-- /.control-sidebar -->
+
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js%>
+</script>
+</body>
+</html>

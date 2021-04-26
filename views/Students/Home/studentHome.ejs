@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="studentHome" ng-controller="studentHomeCtrlr"
+      ng-init="initController(<%- UserID %>)" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-1">
+                    <div class="col-sm-6">
+                        <h1>Recently Asked Questions</h1>
+                    </div>
+                    <div class="text-right col">
+                        <a type="button" class="btn btn-outline-dark" href="/askQuestion">Ask Question</a>
+                    </div>
+                </div>
+
+
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-7 text-left">
+                        <h4 class="text-bold">Topic</h4>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h6 class="text-bold">Posted By</h6>
+                    </div>
+                    <div class="col-1">
+                        <h6 class="text-bold">Replies</h6>
+                    </div>
+                    <div class="col-1">
+                        <h6 class="text-bold">Views</h6>
+                    </div>
+                    <div class="col-1">
+                        <h6 class="text-bold">Posted At</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12" ng-repeat="question in questions | orderBy:'-CreatedDate'">
+                        <!-- Default box -->
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-body pt-2 pb-0">
+                                <div class="row pl-1">
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <a class="text-bold" style="font-size: larger;font-style: italic"
+                                               href="/viewQuestion?Q={{question.QuestionsID}}">{{question.QuestionTitle}}</a>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <div form="col" ng-repeat="tag in question.Tags">
+                                                <a href="#" class="badge badge-primary mr-1">{{tag.text}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 text-center pt-3 bg-gray-light">
+                                        <h6 class="text-bold">{{question.CreatorName}}</h6>
+                                    </div>
+                                    <div class="col-1 text-center pt-3 bg-gradient-light">
+                                        <div class="fas fa-comment mr-2"> {{question.AnswersCount}}</div>
+                                    </div>
+                                    <div class="col-1 text-center pt-3 bg-gradient-gray-dark">
+                                        <div class="fas fa-eye mr-2"> {{question.Views.length}}</div>
+                                    </div>
+                                    <div class="col-1 text-center pt-2">
+                                        <p class="text-sm-center text-dark text-bold">{{question.CreatedDate | date:
+                                            'dd/MM/yyyy hh:mm a'}}</p>
+                                    </div>
+                                    <!--<h4 class="card-text" ng-click="viewQuestion(question.QuestionsID)"><a href="">{{question.QuestionTitle}}</a></h4>-->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Card -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <% include ../../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

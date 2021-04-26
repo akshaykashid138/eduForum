@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>Start Test</title>
+</head>
+<body class="hold-transition layout-top-nav" ng-app="testPageApp" ng-controller="testPageAppCtrlr"
+      ng-init="initController('<%- UserID %>','<%- FullName %>')" ng-cloak>
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">
+                <img src="../../img/AdminLTELogo.png" alt="Eduforum Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light text-white">EduForum</span>
+            </a>
+
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- /.navbar -->
+    <div class="container-fluid mt-2">
+        <div class="card">
+            <div class="card-header bg-dark">
+                <div class="row">
+                    <div class="col text-left">
+                        <h1 class="text-bold">Test Name : {{data.TestName}}</h1>
+                    </div>
+                    <div class="col text-right">
+                        <h1 class="text-bold">Test ID : {{data.TestID}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body bg-gradient-secondary">
+                <div ng-show="_test_start">
+                    <div layout="column" layout-align="center center">
+                        <h1 layout layout-align="center end" style="margin-top: 10px;"
+                            class="text-center text-white text-bold"> WELCOME TO THE TEST</h1>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card bg-gradient-gray-dark">
+                                <div class="card-header">
+                                    <h3 class="text-bold text-center">INSTRUCTIONS</h3>
+                                </div>
+                                <div class="card-body bg-light">
+                                    <p>Candidate should be seated in front of the desktop or Laptop, facing the screen
+                                        and webcam throughout the entire duration of the test.
+                                    <hr>
+                                    Candidate should be seated in a way that there is enough light to capture
+                                    his/her face clearly.
+                                    <hr>
+                                    Candidate should be in formals or smart casuals while taking the test.
+                                    No one else should be present in the surroundings other than the candidate
+                                    during the test.
+                                    <hr>
+                                    A mobile phone with the primary number that was fed at the time of registration
+                                    should be lying next to the candidate. It will be used for communicating with
+                                    the candidate if needed.
+                                    <hr>
+                                    No other electronic device will be permitted
+                                    Candidate needs to fulfill all IT infrastructure requirements to undertake the
+                                    test.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-success" ng-click="startTest()">START TEST</button>
+                    </div>
+                </div>
+                <!--<div ng-show="test_box">-->
+                <!--<form name="test-form">-->
+                <!--&lt;!&ndash; <pre style="margin: 112px 0 54px;padding: 36.5px;"ng-repeat="user in questionArray">{{user}}</pre>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div style="margin: 112px 0 54px;padding: 36.5px;"ng-repeat="user in test">&ndash;&gt;-->
+                <!--<h2 class="text-dark text-bold" style="margin: 112px 0 54px;padding: 36.5px;">-->
+                <!--{{test.Question}}</h2> {{Counter}}-->
+                <!--&lt;!&ndash;<ul style="list-style: none;">&ndash;&gt;-->
+                <!--<ul style="list-style: none;">-->
+                <!--<li>A)<input type="radio" ng-model="selectedOption.option" value="op1" name="u_a"/>-->
+                <!--{{test.op1}}-->
+                <!--</li>-->
+                <!--<li>B)<input type="radio" ng-model="selectedOption.option" value="op2" name="u_a"/>-->
+                <!--{{test.op2}}-->
+                <!--</li>-->
+                <!--<li>C)<input type="radio" ng-model="selectedOption.option" value="op3" name="u_a"/>-->
+                <!--{{test.op3}}-->
+                <!--</li>-->
+                <!--<li>D)<input type="radio" ng-model="selectedOption.option" value="op4" name="u_a"/>-->
+                <!--{{test.op4}}-->
+                <!--</li>-->
+                <!--</ul>-->
+
+                <!--<button class="md-raised md-primary question-btn-float-left" ng-click="nextQuestion()">Next-->
+                <!--</button>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</form>-->
+                <!--</div>-->
+                <div class="form-group col-12" ng-show="test_box">
+                    <form name="test-form">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="text-bold text-left" style="font-family: 'Times New Roman'">
+                                    Q. {{test.Question}}</h2>
+                            </div>
+                            <div class="col-5 text-right">
+                                <h4 class="text-bold" style="font-family: 'Times New Roman'">Time for Question :
+                                    {{Counter}} Seconds</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="text-bold" style="font-family: 'Times New Roman'">OPTIONS</h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="selectedOption.option" value="op1" name="u_a" style="font-weight: 300">
+                                </span>
+                                    </div>
+                                    <input type="text" class="form-control" readonly style="font-size: x-large"
+                                           value="{{test.op1}}">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="selectedOption.option" value="op2" name="u_a">
+                                </span>
+                                    </div>
+                                    <input type="text" class="form-control" readonly
+                                           value="{{test.op2}}">
+                                </div>
+                            </div>
+
+                            <div class="col-6 mt-2">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="selectedOption.option" value="op3" name="u_a">
+                                </span>
+                                    </div>
+                                    <input type="text" class="form-control" readonly
+                                           value="{{test.op3}}">
+                                </div>
+                            </div>
+
+                            <div class="col-6 mt-2">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="selectedOption.option" value="op4" name="u_a">
+                                </span>
+                                    </div>
+                                    <input type="text" class="form-control" readonly
+                                           value="{{test.op4}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <button class="btn btn-info mt-4" ng-click="nextQuestion()">
+                                    NEXT
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div ng-show="noTest" layout='row' layout-align="center center">
+
+                    <h3 style="margin-top: 161px; margin-bottom: 141px;"><i> There is no Test with this Topic </i></h3>
+                </div>
+                <!--<div ng-show="result" style="text-align: center;margin-top: 141px;margin-bottom: 260px;">-->
+
+                <div ng-show="result" class="text-center">
+                    <h1 class="text-white">RESULT</h1>
+                    <hr>
+                    <div> Correct Answer's Are: {{correct}}</div>
+                    <hr>
+                    <div> Wrong Answer's Are: {{wrong}}</div>
+                    <hr>
+                    <div> Unattempted Questions: {{unattempted}}</div>
+                    <hr>
+                    <div> Your Percentage: {{percentage}}</div>
+                    <hr>
+                    <a href="/studentsHome" class="btn btn-block btn-primary">EXIT</a>
+                </div>
+            </div>
+
+            <!--</div>-->
+
+        </div>
+    </div>
+    <% include ../../Partials/footer.ejs %>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="askQuestionApp"
+      ng-controller="askQuestionAppCtrlr" ng-init="initController('<%- UserID%>','<%- FullName%>','<%- UserTypeID%>')" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!---->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card ">
+                    <div class="card-header mt-2 bg-dark">
+                        <div class="card-title text-white">
+                            <h2 class="text-bold">Ask a Public Question!</h2>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form name="askQuestionForm">
+                            <h4 class="text-bold">Question Title</h4>
+                            <input type="text" class="form-control" id="QuestionTitle" name="QuestionTitle"
+                                   ng-model="data.QuestionTitle" ng-minlength="3"
+                                   placeholder="Enter Question Title" autofocus required>
+                            <div ng-messages="askQuestionForm.QuestionTitle.$error" style="color:red"
+                                 ng-if="askQuestionForm.QuestionTitle.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter QuestionTitle</div>
+                                <div ng-message="minlength">QuestionTitle is too short</div>
+                            </div>
+                            <hr>
+                            <h4 class="text-bold">Question Description</h4>
+
+                            <div class="row">
+                                <textarea ckeditor="editorOptions" class="form-control" name="QuestionDescription"
+                                          ng-model="data.QuestionDescription"  id="QuestionDescription" required></textarea>
+                            </div>
+                            <div ng-messages="askQuestionForm.QuestionDescription.$error" style="color:red"
+                                 ng-if="askQuestionForm.QuestionDescription.$touched"
+                                 role="alert">
+                                <div ng-message="required">Please Enter QuestionDescription</div>
+                                <div ng-message="minlength">QuestionDescription is too short</div>
+                            </div>
+                            <hr>
+                            <h2>Tags:</h2>
+                            <tags-input ng-model="data.Tags">
+                                 <auto-complete source="loadTags($query)"></auto-complete>
+                            </tags-input>
+                            <!--<h4 class="text-bold">Tags</h4>-->
+                            <!--<input type="text" class="form-control" id="Tags" name="Tags"-->
+
+                            <!--placeholder="Enter Tags">-->
+                            <hr>
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-dark mx-auto" ng-disabled="!askQuestionForm.$valid"
+                                        ng-click="askQuestion()">Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div><!---->
+    <!-- /.content-wrapper -->
+
+    <% include ../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!--<script src="../../../ckeditor/ckeditor.js"></script>-->
+<!--<script>-->
+<!--CKEDITOR.replace('QuestionDescription');-->
+<!--</script>-->
+<!-- jQuery -->
+<% include ../Partials/bodyScriptLoader.ejs %>
+<!-- <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-ckeditor/0.2.1/ng-ckeditor.min.js"></script>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../Partials/head.ejs %>
+</head>
+<body class="hold-transition login-page" ng-app="userLoginApp" ng-controller="userLoginAppCtrlr" ng-cloak>
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="/"><b>Edu</b>Forum</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <h3 class="login-box-msg text-bold">Sign in here!</h3>
+
+            <form name="login">
+                <div class="alert alert-danger alert-dismissible" role="alert" ng-if="errorMessage.length">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    {{errorMessage}}
+                </div>
+
+                <div class="input-group mb-3">
+                    <input autofocus type="email" class="form-control" placeholder="Email" id="EmailID"
+                           name="EmailID" ng-model="data.EmailID" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-messages="login.EmailID.$error" style="color:red"
+                     ng-if="login.EmailID.$touched"
+                     role="alert">
+                    <div ng-message="required">Please Enter Email ID</div>
+                    <div ng-message="email">Please Enter Valid Email ID</div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="Password"
+                           name="Password" ng-model="data.Password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-messages="login.Password.$error" style="color:red"
+                     ng-if="login.Password.$touched"
+                     role="alert">
+                    <div ng-message="required">Please Enter Password</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-dark btn-block text-bold" ng-click="logInUser()" ng-disabled="!login.$valid">
+                            SIGN IN
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+
+            <div class="social-auth-links text-center mb-3">
+                <hr>
+                <a href="/forgotPassword" class="btn btn-block btn-danger">
+                    <i class="mr-2">Forgot password?</i>
+                </a>
+                <a href="/signup" class="btn btn-block btn-primary">
+                    <i class="mr-2"></i> Create a new Account!
+                </a>
+            </div>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<% include ../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+
+</body>
+</html>

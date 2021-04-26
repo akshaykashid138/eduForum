@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../Partials/head.ejs %>
+    <title>Register</title>
+</head>
+<body class="hold-transition register-page" ng-app="teacherRegistrationApp" ng-controller="teacherRegistrationAppCtrlr"
+      ng-cloak>
+<div class="register-box">
+    <div class="register-logo">
+        <a href="/"><b>Edu</b>Forum</a>
+    </div>
+
+    <div class="card">
+        <div class="card-body register-card-body">
+            <h4 class="login-box-msg text-bold">Teacher Registration</h4>
+
+            <form name="teacherForm">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Full name" name="FullName"
+                               ng-model="data.FullName" ng-minlength="3" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-messages="teacherForm.FullName.$error" style="color:red"
+                         ng-if="teacherForm.FullName.$touched"
+                         role="alert">
+                        <div ng-message="required">Please Enter Full Name</div>
+                        <div ng-message="minlength">Full Name is too short</div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Email" name="EmailID" ng-model="data.EmailID"
+                           required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-messages="teacherForm.EmailID.$error" style="color:red"
+                     ng-if="teacherForm.EmailID.$touched"
+                     role="alert">
+                    <div ng-message="required">Please Enter EmailID</div>
+                    <div ng-message="email">Please Enter Valid EmailID</div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" name="Password"
+                           ng-model="data.Password" ng-minlength="5" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-messages="teacherForm.Password.$error" style="color:red"
+                     ng-if="teacherForm.Password.$touched"
+                     role="alert">
+                    <div ng-message="required">Please Enter Password</div>
+                    <div ng-message="minlength">Password Must Be 5 Characters Long</div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Confirm password" name="ConfirmPassword"
+                           ng-model="data.ConfirmPassword" ng-pattern="data.Password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-messages="teacherForm.ConfirmPassword.$error" style="color:red"
+                     ng-if="teacherForm.ConfirmPassword.$touched"
+                     role="alert">
+                    <div ng-message="required">Please Re-Enter Password</div>
+                    <div ng-message="pattern">Password Does Not Matches</div>
+                </div>
+                <!--<div class="input-group mb-3">-->
+                <!--<input type="file" name="Identity" ng-disabled="uploading" style="display: none">-->
+                <!--<button class="btn btn-primary"ng-disabled="uploading" >Upload</button>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-dark btn-block text-bold" ng-disabled="!teacherForm.$valid"
+                                ng-click="registerTeacher()">REGISTER
+                        </button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+                <div class="social-auth-links text-center">
+                    <hr>
+                    <a href="/login" class="btn btn-block btn-danger">
+                        <i class="mr-2"></i>
+                        Already have an account?
+                    </a>
+                    <a href="/signup" class="btn btn-block btn-primary">
+                        <i class="mr-2"></i>
+                        Are You a Student? Then click here!
+                    </a>
+                </div>
+                <!-- /.form-box -->
+                <!-- /.card -->
+            </form>
+        </div>
+        <!-- /.register-box -->
+        <% include ../Partials/bodyScriptLoader.ejs %>
+        <script>
+            <% include ng-app.js %>
+        </script>
+</body>
+</html>

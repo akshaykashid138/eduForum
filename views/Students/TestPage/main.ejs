@@ -1,0 +1,61 @@
+<html>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="testPageApp" ng-controller="testPageAppCtrlr"
+      ng-init="initController(<%- UserID %>)" ng-cloak>
+<div class="container">
+    {{data.TestName}}
+    {{data.TestID}}
+
+    <div ng-show="_test_start">
+        <div layout="column" layout-align="center center">
+
+            <h3 layout layout-align="center end" style="margin-top: 70px;"> Welcome to the Test</h3>
+
+        </div>
+        <button class="btn btn-primary md-raised" ng-click="startTest()"> Start Test</button>
+
+    </div>
+
+    <div class="container">
+        <div ng-show="test_box">
+            <form name="test-form">
+                <!-- <pre style="margin: 112px 0 54px;padding: 36.5px;"ng-repeat="user in questionArray">{{user}}</pre>-->
+                <!--<div style="margin: 112px 0 54px;padding: 36.5px;"ng-repeat="user in test">-->
+                <pre style="margin: 112px 0 54px;padding: 36.5px;">{{test.Question}}</pre>
+
+
+                <ul style="list-style: none;">
+                    <li><input type="radio" ng-model="selectedOption.option" value="op1" name="u_a"/> {{test.op1}}</li>
+                    <li><input type="radio" ng-model="selectedOption.option" value="op2" name="u_a"/> {{test.op2}}</li>
+                    <li><input type="radio" ng-model="selectedOption.option" value="op3" name="u_a"/> {{test.op3}}</li>
+                    <li><input type="radio" ng-model="selectedOption.option" value="op4" name="u_a"/> {{test.op4}}</li>
+                </ul>
+
+
+                <button class="md-raised md-primary question-btn-float-left" ng-click="nextQuestion()">Next</button>
+                <!--</div>-->
+            </form>
+        </div>
+        <div ng-show="noTest" layout='row' layout-align="center center">
+
+            <h3 style="margin-top: 161px; margin-bottom: 141px;"><i> There is no Test with this Topic </i></h3>
+        </div>
+        <div ng-show="result" style="text-align: center;margin-top: 141px;margin-bottom: 260px;">
+
+
+            <div> Correct Answer's Are: {{correct}}</div>
+            <div> Wrong Answer's Are: {{wrong}}</div>
+            <div> Unattempted Questions: {{unattempted}}</div>
+            <div> Your Percentage: {{percentage}}</div>
+            <a href="/studentsHome">Exit</a>
+        </div>
+    </div>
+
+
+</div>
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

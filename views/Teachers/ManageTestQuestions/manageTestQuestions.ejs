@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../../Partials/head.ejs %>
+    <title>EduForum</title>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="manageTestQuestionsApp"
+      ng-controller="manageTestQuestionsAppCtrlr"
+      ng-init="initController(<%- TestID %>, <%- NumberOfQuestions %>, '<%- TestName %>')" ng-cloak>
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-fluid" id="container-wrapper">
+            <form name="testForm" class="bg-gradient-light p-4" id="testForm">
+                <div class="col-12">
+                    <h4 class="text-primary float-left">Test Name: <b>{{data.TestName}}</b></h4>
+                    <h4 class="text-primary float-right">No. Of Questions: <b>{{data.NumberOfQuestions}}</b></h4>
+                </div>
+
+                <div class="col-12 mt-5">
+                    <div class="alert alert-danger alert-dismissible" role="alert"
+                         ng-repeat="message in errorMessages">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        {{message}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row mt-3" ng-repeat="question in data.Questions track by $index">
+                    <!--<input type="number" ng-model="data.Questions[$index].QuestionNumber" value="{{$index+1}}">-->
+                    <h6 class="mx-auto text-danger">Question No. : {{$index+1}}</h6>
+                    <div class="form-group col-12">
+                        <label>Question</label>
+                        <input type="text" class="form-control mb-2" name="Question{{$index}}"
+                               ng-model="data.Questions[$index].Question"
+                               placeholder="Question {{$index+1}}" ng-value="Never" required>
+                        <div ng-messages="testForm['Question'+$index].$error" style="color:red"
+                             ng-if="testForm['Question'+$index].$touched"
+                             role="alert">
+                            <div ng-message="required">Please Enter Question {{$index+1}}</div>
+                        </div>
+                        <!--<div class="row">-->
+                            <!--<input type="radio"  ng-model="data.Questions[$index].rightAnswer" value="op1">-->
+                            <!--<md-input-container> <input type="text" class="form-control" ng-model="data.Questions[$index].op1" placeholder="Enter your option 1"></md-input-container>-->
+                            <!--<input type="radio"  ng-model="data.Questions[$index].rightAnswer" value="op2">-->
+                            <!--<md-input-container> <input type="text" name="" class="form-control" ng-model="data.Questions[$index].op2" placeholder="Enter your option 2"></md-input-container>-->
+                            <!--<input type="radio" ng-model="data.Questions[$index].rightAnswer"  value="op3">-->
+                            <!--<md-input-container><input type="text" name="" ng-model="data.Questions[$index].op3" class="form-control" placeholder="Enter your option 3"></md-input-container>-->
+                            <!--<input type="radio" ng-model="data.Questions[$index].rightAnswer" value="op4">-->
+                            <!--<md-input-container><input type="text" name="" ng-model="data.Questions[$index].op4" class="form-control" placeholder="Enter your option 4"></md-input-container>-->
+                        <!--</div>-->
+                        <label>Options</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio"  ng-model="data.Questions[$index].rightAnswer" value="op1">
+                                </span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="data.Questions[$index].op1" placeholder="Enter Option 1">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio"  ng-model="data.Questions[$index].rightAnswer" value="op2">
+                                </span>
+                                    </div>
+                                    <input type="text" name="" class="form-control" ng-model="data.Questions[$index].op2" placeholder="Enter Option 2">
+                                </div>
+                            </div>
+
+                            <div class="col-6 mt-2">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="data.Questions[$index].rightAnswer"  value="op3">
+                                </span>
+                                    </div>
+                                    <input type="text" name="" ng-model="data.Questions[$index].op3" class="form-control" placeholder="Enter Option 3">
+                                </div>
+                            </div>
+
+                            <div class="col-6 mt-2">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <input type="radio" ng-model="data.Questions[$index].rightAnswer" value="op4">
+                                </span>
+                                    </div>
+                                    <input type="text" name="" ng-model="data.Questions[$index].op4" class="form-control" placeholder="Enter Option 4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group col-6">-->
+                        <!--<label>Option A</label>-->
+                        <!--<input class="form-control" value="Never" disabled>-->
+                    <!--</div>-->
+                    <!--<div class="form-group col-6">-->
+                        <!--<label>Option B</label>-->
+                        <!--<input class="form-control" value="Occasionally" disabled>-->
+                    <!--</div>-->
+                    <!--<div class="form-group col-6">-->
+                        <!--<label>Option C</label>-->
+                        <!--<input class="form-control" value="Sometimes" disabled>-->
+                    <!--</div>-->
+                    <!--<div class="form-group col-6">-->
+                        <!--<label>Option D</label>-->
+                        <!--<input class="form-control" value="Usual" disabled>-->
+                    <!--</div>-->
+                    <!--<div class="form-group col-6">-->
+                        <!--<label>Option E</label>-->
+                        <!--<input class="form-control" value="Always" disabled>-->
+                    <!--</div>-->
+
+
+
+                </div>
+                <div class="form-group col   text-center">
+                    <button class="btn btn-primary" ng-disabled="!testForm.$valid" ng-click="createTest()">
+                        Create Test
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <% include ../../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<% include ../../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>

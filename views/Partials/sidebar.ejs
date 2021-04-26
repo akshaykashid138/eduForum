@@ -1,0 +1,29 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4 accordion">
+    <a href="../../index3.html" class="brand-link elevation-4">
+        <img src="../img/AdminLTELogo.png"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light"><b>EDUFORUM</b></span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+
+                <% for(var item of menuItems){ %>
+                <li class="nav-item has-treeview">
+                    <a class="nav-link" href="<%- item.url %>">
+                        <i class="<%- item.class %> nav-icon"></i>
+                        <span class="brand-text font-weight-normal"><%- item.title %></span></a>
+                    <hr class="sidebar-divider my-1">
+                    <% } %>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

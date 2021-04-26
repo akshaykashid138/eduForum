@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../Partials/head.ejs %>
+    <style>
+
+        #edit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin-left: 83px;
+            margin-top: 9px;
+        }
+
+        button {
+            margin: auto;
+            margin-top: 4px;
+        }
+    </style>
+
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="editProfile"
+      ng-controller="editProfileCtrlr"
+      ng-init="initController('<%- UserID %>','<%- FullName %>','<%- UserTypeID %>','<%- EmailID %>')" ng-cloak>
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!---->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profile</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">User Profile</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!-- Profile Image -->
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         src="uploads/{{PersonalData.image}}"
+                                         alt="User profile picture">
+                                    <!--<tr><td><input type="file"  name="myfile" ></td>-->
+                                    <!--<td><input  class="btn btn-info " name="Submit" type="submit" ng-click="Upload" value="Upload image"></td></tr>-->
+                                    <!--<div>-->
+                                    <!--<form   ng-controller="MyCtrl as up" name="up.upload_form">-->
+
+                                    <!--<input-->
+                                    <!--type="file"-->
+                                    <!--ngf-select-->
+                                    <!--ng-model="up.file"-->
+                                    <!--name="file"-->
+                                    <!--ngf-pattern="'image/*'"-->
+                                    <!--accept="image/*"-->
+                                    <!--ngf-max-size="20MB"-->
+                                    <!--/>-->
+                                    <!--Image thumbnail: <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>-->
+                                    <!--<i ng-show="up.upload_form.file.$error.required">*required</i><br>-->
+                                    <!--<i ng-show="up.upload_form.file.$error.maxSize">File too large-->
+                                    <!--{{up.file.size / 1000000|number:1}}MB: max 20M</i>-->
+                                    <!--&lt;!&ndash;  Multiple files-->
+                                    <!--<div class="button" ngf-select ng-model="up.files" ngf-multiple="true">Select</div>-->
+                                    <!--Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div> &ndash;&gt;-->
+                                    <!--<button type="submit" ng-click="up.submit()">submit</button>-->
+                                    <!--<p>{{up.progress}}</p>-->
+                                    <!--</form>-->
+                                    <!--</div>-->
+
+                                    <div id="edit" ng-controller="myCtrl">
+                                        <input type="file" file-model="myFile"/>
+                                        <button class="btn btn-primary" ng-click="uploadFile()">Upload File</button>
+                                    </div>
+
+                                </div>
+
+                                <!--<table>-->
+                                <!--<img style="margin-left:25px;" src="Images/default.jpg" width="200" height="200" />-->
+                                <!--<tr><td><input type="file" name="image" ></td></tr>-->
+                                <!--<tr><td><input name="Submit" type="submit" value="Upload image"></td></tr>-->
+                                <!--</table>-->
+
+                                <h3 class="profile-username text-center"><%- FullName %></h3>
+
+                                <p class="text-muted text-center" ng-if="<%- UserTypeID %> == 3">Student</p>
+                                <p class="text-muted text-center" ng-if="<%- UserTypeID %> == 2">Teacher</p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- About Me Box -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">About Me</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <strong ng-if="(data.UserTypeID)==3"><i class="fas fa-book mr-1"></i> Education</strong>
+                                <strong ng-if="(data.UserTypeID)==2"><i class="fas fa-book mr-1"></i>
+                                    Qualification</strong>
+                                <p class="text-muted" ng-if="(data.UserTypeID)==2">
+                                    {{PersonalData.Qualification}} In {{PersonalData.Stream}}
+                                </p>
+                                <p class="text-muted" ng-if="(data.UserTypeID)==3">
+                                    {{PersonalData.Education}} From {{PersonalData.College}}
+                                </p>
+                                <hr>
+
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                                <p class="text-muted">{{PersonalData.Location}}</p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                                <p class="text-muted">
+                                    <!--<span class="tag tag-danger">UI Design</span>-->
+                                    <!--<span class="tag tag-success">Coding</span>-->
+                                    <!--<span class="tag tag-info">Javascript</span>-->
+                                    <!--<span class="tag tag-warning">PHP</span>-->
+                                    <!--<span class="tag tag-primary">Node.js</span>-->
+                                    {{PersonalData.Skills}}
+                                </p>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header p-2 ">
+                                <ul class="nav nav-pills ">
+                                    <Button class="btn btn-primary ">Settings</Button>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div id="settings">
+                                        <form class="form-horizontal" name="settingForm">
+                                            <div class="form-group row">
+                                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputName"
+                                                           ng-model="data.FullName" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-9">
+                                                    <input type="email" class="form-control " id="inputEmail"
+                                                           ng-model="data.EmailID" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" ng-if="(data.UserTypeID)==3">
+                                                <label for="inputEducation"
+                                                       class="col-sm-2 col-form-label">Education</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="Education"
+                                                           name="Education"
+                                                           ng-model="PersonalData.Education" minlength="2" required>
+                                                </div>
+                                                <div ng-messages="settingForm.Education.$error" style="color:red"
+                                                     ng-if="settingForm.Education.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter Education</div>
+                                                    <div ng-message="minlength">Education is too short</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row" ng-if="(data.UserTypeID)==3">
+                                                <label for="inputCollege"
+                                                       class="col-sm-2 col-form-label">College</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="College" name="College"
+                                                           ng-model="PersonalData.College" minlength="5" required>
+                                                </div>
+                                                <div ng-messages="settingForm.College.$error" style="color:red"
+                                                     ng-if="settingForm.College.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter College</div>
+                                                    <div ng-message="minlength">College Name is too short</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" ng-if="(data.UserTypeID)==2">
+                                                <label for="inputQu9ification" class="col-sm-2 col-form-label">Qualification</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="Qualification"
+                                                           name="Qualification"
+                                                           ng-model="PersonalData.Qualification" minlength="2" required>
+                                                </div>
+                                                <div ng-messages="settingForm.Qualification.$error" style="color:red"
+                                                     ng-if="settingForm.Qualification.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter Qualification</div>
+                                                    <div ng-message="minlength">Qualification is too short</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row" ng-if="(data.UserTypeID)==2">
+                                                <label for="inputStream" class="col-sm-2 col-form-label">Stream</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="Stream" name="Stream"
+                                                           ng-model="PersonalData.Stream" minlength="2" required>
+                                                </div>
+                                                <div ng-messages="settingForm.Stream.$error" style="color:red"
+                                                     ng-if="settingForm.Stream.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter Stream</div>
+                                                    <div ng-message="minlength">Stream is too short</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row" ng-if="(data.UserTypeID)==2">
+                                                <label for="inputExperience" class="col-sm-2 col-form-label">Experience(in
+                                                    Yrs)</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="Experience"
+                                                           name="Experience"
+                                                           ng-model="PersonalData.Experience" required>
+                                                </div>
+                                                <div ng-messages="settingForm.Experience.$error" style="color:red"
+                                                     ng-if="settingForm.Experience.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter Experience</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputLocation"
+                                                       class="col-sm-2 col-form-label">Location</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="Location"
+                                                           name="Location"
+                                                           ng-model="PersonalData.Location" minlength="2" required>
+                                                </div>
+                                                <div ng-messages="settingForm.Location.$error" style="color:red"
+                                                     ng-if="settingForm.College.$touched"
+                                                     role="alert">
+                                                    <div ng-message="required">Please Enter Location</div>
+                                                    <div ng-message="minlength">Location is too short</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputSkills"
+                                                           name="inputSkills"
+                                                           ng-model="PersonalData.Skills">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row ">
+                                                <div class="offset-sm-2 col-sm-10 text-center">
+                                                    <button type="submit" class="btn btn-danger" ng-click="Update()">
+                                                        Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <% include ../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<% include ../Partials/bodyScriptLoader.ejs %>
+<script>
+    <% include ng-app.js %>
+
+</script>
+
+<script type="text/javascript" src="vendor/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script type="text/javascript" src="vendor/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+<!--<script type="text/javascript" src="main.js"></script>-->
+</body>
+</html>

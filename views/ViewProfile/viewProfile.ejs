@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../Partials/head.ejs %>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed" ng-app="viewProfile" ng-controller="viewProfileCtrlr"
+      ng-init="initController()" ng-cloak>
+<div class="wrapper">
+    <!-- Navbar -->
+    <% include ../Partials/navbar.ejs %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <% include ../Partials/sidebar.ejs %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!---->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col">
+                        <h3 class="mt-2 text-bold text-primary">Profile</h3>
+                    </div>
+
+                </div>
+                <div class="row text-center">
+                    <div class="col-4 ">
+                        <!-- Profile Image -->
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         src="uploads/{{PersonalData.image}}"
+                                         alt="User profile picture">
+                                    <!--<tr><td><input type="file"  name="myfile" ></td>-->
+                                    <!--<td><input  class="btn btn-info " name="Submit" type="submit" ng-click="Upload" value="Upload image"></td></tr>-->
+                                    <!--<div>-->
+                                    <!--<form   ng-controller="MyCtrl as up" name="up.upload_form">-->
+
+                                    <!--<input-->
+                                    <!--type="file"-->
+                                    <!--ngf-select-->
+                                    <!--ng-model="up.file"-->
+                                    <!--name="file"-->
+                                    <!--ngf-pattern="'image/*'"-->
+                                    <!--accept="image/*"-->
+                                    <!--ngf-max-size="20MB"-->
+                                    <!--/>-->
+                                    <!--Image thumbnail: <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>-->
+                                    <!--<i ng-show="up.upload_form.file.$error.required">*required</i><br>-->
+                                    <!--<i ng-show="up.upload_form.file.$error.maxSize">File too large-->
+                                    <!--{{up.file.size / 1000000|number:1}}MB: max 20M</i>-->
+                                    <!--&lt;!&ndash;  Multiple files-->
+                                    <!--<div class="button" ngf-select ng-model="up.files" ngf-multiple="true">Select</div>-->
+                                    <!--Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div> &ndash;&gt;-->
+                                    <!--<button type="submit" ng-click="up.submit()">submit</button>-->
+                                    <!--<p>{{up.progress}}</p>-->
+                                    <!--</form>-->
+                                    <!--</div>-->
+
+                                </div>
+
+                                <!--<table>-->
+                                <!--<img style="margin-left:25px;" src="Images/default.jpg" width="200" height="200" />-->
+                                <!--<tr><td><input type="file" name="image" ></td></tr>-->
+                                <!--<tr><td><input name="Submit" type="submit" value="Upload image"></td></tr>-->
+                                <!--</table>-->
+
+                                <h3 class="profile-username text-center">{{PersonalData.FullName}}</h3>
+
+                                <p class="text-muted text-center" ng-if="(ProfileUserTypeID  == 3)">Student</p>
+                                <p class="text-muted text-center" ng-if="(ProfileUserTypeID  == 2)">Teacher</p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- About Me Box -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">About</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <strong ng-if="(ProfileUserTypeID==3)"><i class="fas fa-book mr-1"></i> Education</strong>
+                                <strong ng-if="(ProfileUserTypeID==2)"><i class="fas fa-book mr-1"></i>
+                                    Qualification</strong>
+                                <p class="text-muted" ng-if="(ProfileUserTypeID==2)">
+                                    {{PersonalData.Qualification}} In {{PersonalData.Stream}}
+                                </p>
+                                <p class="text-muted" ng-if="(ProfileUserTypeID==3)">
+                                    {{PersonalData.Education}} From {{PersonalData.College}}
+                                </p>
+                                <hr>
+
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                                <p class="text-muted">{{PersonalData.Location}}</p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                                <p class="text-muted">
+                                    <!--<span class="tag tag-danger">UI Design</span>-->
+                                    <!--<span class="tag tag-success">Coding</span>-->
+                                    <!--<span class="tag tag-info">Javascript</span>-->
+                                    <!--<span class="tag tag-warning">PHP</span>-->
+                                    <!--<span class="tag tag-primary">Node.js</span>-->
+                                    {{PersonalData.Skills}}
+                                </p>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9">
+
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <% include ../Partials/footer.ejs %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<% include ../Partials/bodyScriptLoader.ejs %>
+
+<script type="text/javascript" src="vendor/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script type="text/javascript" src="vendor/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+<!--<script type="text/javascript" src="main.js"></script>-->
+<script>
+    <% include ng-app.js %>
+</script>
+</body>
+</html>
