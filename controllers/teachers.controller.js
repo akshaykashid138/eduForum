@@ -68,7 +68,7 @@ exports.renderManageTestQuestionsPage = function (req,res) {
         if (err)
             throw err;
         else
-            res.render("teachers/ManageTestQuestions/manageTestQuestions", {
+            res.render("Teachers/ManageTestQuestions/manageTestQuestions", {
                 TestID: test.TestID,
                 NumberOfQuestions: test.NumberOfQuestions,
                 TestName: test.TestName
