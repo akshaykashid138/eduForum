@@ -92,13 +92,13 @@ app.controller("testPageAppCtrlr", ["$scope", "$window", "$http", "$timeout", fu
                 $scope.Counter = 10;
                 $scope.Timeout = function () {
                     $scope.Counter--;
-                    timeout = $timeout($scope.Timeout, 1000);
+                    timeout = $timeout($scope.Timeout, 10000);
                     if ($scope.Counter == 0) {
                         // $timeout.cancel(timeout);
                         $scope.nextQuestion();
                     }
                 }
-                var timeout = $timeout($scope.Timeout, 1000);
+                var timeout = $timeout($scope.Timeout, 10000);
 
                 // $scope.countdown=3000
                 // $timeout(callAtTimeout, 3000);
